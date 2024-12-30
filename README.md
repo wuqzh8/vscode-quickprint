@@ -10,7 +10,7 @@ quickly print the variable at the cursor, the selected variable, or the clipboar
 ## Commands & keybindings
 
 - **Commands**
-```json
+```jsonc
 // 提示: 使用 Ctrl+Shift+P 打开命令面板然后输入命令
 // Tip: Use Ctrl+Shift+P to open the Command Palette and type the command
 {
@@ -27,7 +27,7 @@ quickly print the variable at the cursor, the selected variable, or the clipboar
 
 - **default keybindings**
 
-```json
+```jsonc
 // 提示: ctrl+k ctrl+s 可以打开快捷键设置面板或者可以在keybindings.json直接更改
 // Tip: Press Ctrl+K Ctrl+S to open the Keyboard Shortcuts panel, or edit directly in the keybindings.json file.
 {
@@ -55,7 +55,7 @@ Whether to restore the cursor position after inserting text.
 
 - **For example**:  
 
-  ```json
+  ```jsonc
   // in settings.json
   "quickprint.restoreCursorAfterInsert":true,
   "quickprint.outputFormat": {
@@ -72,7 +72,7 @@ Whether to restore the cursor position after inserting text.
 
 ## With vscodeVim
 
-```json
+```jsonc
 // in Settings.json
 "vim.normalModeKeyBindingsNonRecursive": [
   { 
