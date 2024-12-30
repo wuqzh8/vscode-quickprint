@@ -1,0 +1,10 @@
+{
+    "quickprint.description": "quickly print the variable at the cursor, the selected variable, or the clipboard content in customizable formats across multiple programming languages.",
+    "quickprint.commands.printClipboardContent.title": "quickprint: Print Clipboard Content",
+    "quickprint.commands.printWordOrSelectedText.title": "quickprint: Print Word At Cursor Or Selected Text",
+    "quickprint.configuration.outputFormat.description":"Configure the output format and position for print statements for different languages",
+    "quickprint.configuration.restoreCursorAfterInsert.description":"Whether to restore the cursor position after inserting text.",
+    "quickprint.warningMessage.missingFormat": "The print format for language () is not defined. Please configure it in the settings.",
+    "quickprint.warningMessage.openSettings": "Open Settings"
+
+}

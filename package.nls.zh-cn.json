@@ -1,0 +1,9 @@
+{
+    "quickprint.description": "快速打印光标位置的变量、选中的变量、或剪贴板内容，支持多种编程语言的可定制格式。",
+    "quickprint.commands.printClipboardContent.title": "快速打印: 打印剪贴板内容",
+    "quickprint.commands.printWordOrSelectedText.title": "快速打印: 打印光标所在单词或选中文本",
+    "quickprint.configuration.outputFormat.description": "配置不同编程语言中的打印语句输出格式和位置",
+    "quickprint.configuration.restoreCursorAfterInsert.description": "插入文本后是否恢复光标位置",
+    "quickprint.warningMessage.missingFormat": "未找到适用于该语言的格式化设置，请在配置中设置输出格式。",
+    "quickprint.warningMessage.openSettings": "打开设置"
+}

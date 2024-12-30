@@ -1,0 +1,91 @@
+{
+  "name": "vscode-quickprint",
+  "displayName": "Quick Print",
+  "description": "%quickprint.description%",
+  "publisher": "wuqzh8",
+  "icon": "assets/icon.png",
+  "version": "1.0.2",
+  "engines": {"vscode": "^1.96.0"},
+  "repository": {"type": "git", "url": "https://github.com/wuqzh8/vscode-quickprint"},
+  "categories": ["Other"],
+  "keywords": ["quickprint", "quick print", "print", "easy print", "auto print", "print select", "print clipboard"],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "quickprint.printClipboardContent",
+        "title": "%quickprint.commands.printClipboardContent.title%"
+      },
+      {
+        "command": "quickprint.printWordOrSelectedText",
+        "title": "%quickprint.commands.printWordOrSelectedText.title%"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "quickprint.printClipboardContent",
+        "key": "alt+shift+p",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "quickprint.printWordOrSelectedText",
+        "key": "alt+shift+w",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "properties": {
+        "quickprint.restoreCursorAfterInsert": {
+          "type": "boolean",
+          "default": true,
+          "description": "%quickprint.configuration.restoreCursorAfterInsert.description%"
+        },
+        "quickprint.outputFormat": {
+          "default": {
+            "go": { "position": "below", "format": "fmt.Println(\"_var_:\", _var_)" },
+            "java": { "position": "below", "format": "System.out.println(\"_var_: \" + _val_)" },
+            "python": { "position": "below", "format": "print('_var_:', _var_)" },
+            "javascript": { "position": "below", "format": "console.log('_var_:', _var_)" },
+            "typescript": { "position": "below", "format": "console.log('_var_:', _var_)" },
+            "typescript-react": { "position": "below", "format": "console.log('_var_:', _var_)" },
+            "vue": { "position": "below", "format": "console.log('_var_:', _var_)" },
+            "c": { "position": "below", "format": "printf(\"_var_: %d\\n\", _var_);" },
+            "cpp": { "position": "below", "format": "std::cout << \"_var_: \" << _var_ << std::endl;" },
+            "c#": { "position": "below", "format": "Console.WriteLine($\"_var_: {_var_}\");" },
+            "ruby": { "position": "below", "format": "puts \"_var_: #{_var_}\"" },
+            "php": { "position": "below", "format": "echo \"_var_: ${_var_}\";" },
+            "swift": { "position": "below", "format": "print(\"_var_: {_var_}\")" },
+            "kotlin": { "position": "below", "format": "println(\"_var_: {_var_}\")" },
+            "scala": { "position": "below", "format": "println(s\"_var_: {_var_}\")" },
+            "shell": { "position": "below", "format": "echo \"_var_: ${_var_}\"" },
+            "bash": { "position": "below", "format": "echo \"_var_: ${_var_}\"" },
+            "elm": { "position": "below", "format": "Debug.log(\"_var_: {_var_}\")" },
+            "clojure": { "position": "below", "format": "(println \"_var_:\" _var_)" },
+            "r": { "position": "below", "format": "cat(paste(\"_var_: \", _var_))" },
+            "matlab": { "position": "below", "format": "disp([\"_var_: \", num2str(_var_)])" },
+            "objective-c": { "position": "below", "format": "NSLog(@\"_var_: %d\", _var_);" },
+            "vhdl": { "position": "below", "format": "report \"_var_: {_var_}\";" },
+            "haskell": { "position": "below", "format": "putStrLn (\"_var_: \" ++ show _var_)" }
+          },
+          "description": "%quickprint.configuration.outputFormat.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.96.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.16.0"
+  }
+}
+
