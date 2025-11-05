@@ -4,7 +4,7 @@
   "description": "%quickprint.description%",
   "publisher": "wuqzh8",
   "icon": "assets/icon.png",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "engines": {"vscode": "^1.96.0"},
   "repository": {"type": "git", "url": "https://github.com/wuqzh8/vscode-quickprint"},
   "categories": ["Other"],
@@ -20,7 +20,12 @@
       {
         "command": "quickprint.printWordOrSelectedText",
         "title": "%quickprint.commands.printWordOrSelectedText.title%"
-      }
+      },
+      {"command": "quickprint.printCustom1", "title":"quickprint.printCustom1"},
+      {"command": "quickprint.printCustom2", "title":"quickprint.printCustom2"},
+      {"command": "quickprint.printCustom3", "title":"quickprint.printCustom3"},
+      {"command": "quickprint.printCustom4", "title":"quickprint.printCustom4"},
+      {"command": "quickprint.printCustom5", "title":"quickprint.printCustom5"}
     ],
     "keybindings": [
       {

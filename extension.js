@@ -2,6 +2,7 @@
 
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const path = require('path');
 let outputFormat = {
 	"go": { "position": "below", "format": "fmt.Println(\"_var_:\", _var_)" },
 	"java": { "position": "below", "format": "System.out.println(\"_var_: \" + _val_)" },
@@ -30,8 +31,8 @@ let outputFormat = {
 };
 
 function updateConfig() {
-	const config = vscode.workspace.getConfiguration();
-	outputFormat = Object.assign({}, outputFormat, config.get('quickprint.outputFormat'));
+	const config = vscode.workspace.getConfiguration("quickprint");
+	outputFormat = Object.assign({}, outputFormat, config.get('outputFormat'));
 	// console.log('Config Update:', outputFormat);
 }
 /**
@@ -53,23 +54,37 @@ function activate(context) {
 				printthing(editor.selection.isEmpty ? getWordAtCursor(editor)
 					: editor.document.getText(editor.selection));
 			}
-		}),
+		})
 	)
+	for (let i = 1; i <= 5; i++) {
+		context.subscriptions.push(
+			vscode.commands.registerCommand(`quickprint.printCustom${i}`, async () => {
+				const editor = vscode.window.activeTextEditor;
+				if (editor) {
+					printthing(
+						editor.selection.isEmpty ? getWordAtCursor(editor) : editor.document.getText(editor.selection),
+						`custom${i}`
+					);
+				}
+			}))
+	};
 }
 
 /**
  * @param {string} thing
+ * @param {string} langId
 */
-function printthing(thing) {
+function printthing(thing, langId = '') {
 	const editor = vscode.window.activeTextEditor;
 	if (!editor || !thing) {
 		return
 	}
-	const languageId = editor.document.languageId;
-	const languageFormat = outputFormat[languageId]
+	if (!langId)
+		langId = editor.document.languageId;
+	const languageFormat = outputFormat[langId]
 	// console.log("format", languageFormat);
 	if (!languageFormat) {
-		vscode.window.showWarningMessage(`The print format for ${languageId} is not defined. Please configure it in the settings.`, "Open Settings")
+		vscode.window.showWarningMessage(`The print format for ${langId} is not defined. Please configure it in the settings.`, "Open Settings")
 			.then(openSettingsLabel => {
 				if (openSettingsLabel === 'Open Settings') {
 					// 打开 VSCode 的设置页面
@@ -79,9 +94,16 @@ function printthing(thing) {
 		return
 	}
 	const position = languageFormat?.position || 'below'; // 默认位置
-	const format = languageFormat?.format || "print('{var}:', {var})"; // 默认位置
+	const filepath = editor.document.fileName;
+	const filename = path.basename(filepath);
+	let line = editor.selection.active.line + 1; // 注意 VSCode 行号从 0 开始
+	// if (position == 'below') line++;
+	const format = languageFormat?.format || "print(_var_)";
 	const restoreCursor = outputFormat.restoreCursor || true
-	const printtext = format.replace(/_var_/g, thing)
+	let printtext = format.replace(/_var_/g, thing)
+	printtext = printtext.replace(/_line_/g, line)
+	printtext = printtext.replace(/_filename_/g, filename)
+	printtext = printtext.replace(/_filepath_/g, filepath)
 	insertText(editor, printtext, position, restoreCursor)
 }
 

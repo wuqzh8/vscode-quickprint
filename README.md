@@ -46,8 +46,8 @@ quickly print the variable at the cursor, the selected variable, or the clipboar
 ## Settings
 
 - **`quickprint.outputFormat`**:  
-用于配置不同语言的打印格式和位置（`below` 或 `above`），其中占位符`_var_`会被替换为变量名。  
-Used to configure the print format and position (below or above) for different languages, where the placeholder `_var_` will be replaced with the variable name.  
+用于配置不同语言的打印格式和位置（`below` 或 `above`），其中占位符`_var_`会被替换为变量名，还支持 `_line_` 行号、`_filename_` 文件名、`filepath` 文件路径。  
+Used to configure the print format and position (below or above) for different languages, where the placeholder `_var_` will be replaced with the variable name. Also supports `_line_` 、`_filename_` 、`_filepath_`.
 
 - **`quickprint.restoreCursorAfterInsert`**:  
 插入文本后是否恢复光标到原来位置  
